@@ -16,13 +16,12 @@ if (-Not (Test-Path -Path $setup_env_cache -PathType Container)) {
 }
 
 #### Ensure resources are installed or get them
-####
 
-
-## Get WiX from https://wixtoolset.org/releases
+## WiX toolset 
 ##
-## Wix 3.11.1  released Dec 31, 2017
-## Wix 3.11.2  released Sep 19, 2019 (Unneeded protection against maliciously crafted cabinet or zip files) 
+## From https://wixtoolset.org/releases
+##   Wix 3.11.1  released Dec 31, 2017
+##   Wix 3.11.2  released Sep 19, 2019 (Unneeded protection against maliciously crafted cabinet or zip files) 
 
 ##
 ## If you have a csproj you must edit the hard reference to the WiX version in file
@@ -38,7 +37,7 @@ if (Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"{AA06E8
     $dotnet3state = (Get-WindowsOptionalFeature -Online -FeatureName "NetFx3").State
     $dotnet3enabled = $dotnet3state -Eq "Enabled"
     if (-Not ($dotnet3enabled)) {
-        Write-Host -ForegroundColor Red "To use WiX 3.11 on Windows 10, you need to enable .Net Framework 3.5"
+        Write-Host -ForegroundColor Yellow "    ***  Please enable .Net Framework 3.5 (For WiX 3.11)***"
         Start-Process optionalfeatures -Wait -NoNewWindow
     }
     
@@ -46,18 +45,18 @@ if (Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"{AA06E8
     $u = "https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311.exe"
     $h = "7CAECC9FFDCDECA09E211AA20C8DD2153DA12A1647F8B077836B858C7B4CA265"
     OptionallyDownloadAndVerify $WixInstaller $u $h
-    Write-Host -ForegroundColor Yellow "-- Please install the Wix toolset --"
+    Write-Host -ForegroundColor Yellow "    *** Please install the Wix toolset ***"
     Start-Process $wixInstaller -Wait -NoNewWindow
 }
 
 if ($ENV:WIX -eq "") {
-    Write-Host -ForegroundColor Yellow "-- Please open a new Shell for the Wix enviornment variable --"
+    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the Wix enviornment variable ***"
 } else {
     Write-Host -ForegroundColor Green "WiX enviornment variable found ($ENV:WIX)"
 }
 
 ## Build tools 2015  
-#  Account for Build tools 2015 bugfix upgrade 
+#  There is a bugfix upgrade 
 #  14.0.23107    from link     {8C918E5B-E238-401F-9F6E-4FB84B024CA2}   Appears in appwiz.cpl
 #  14.0.25420    from where?   {79750C81-714E-45F2-B5DE-42DEF00687B8}   Doesn't appear in appwiz.cpl
 #
@@ -69,14 +68,17 @@ if ((Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"{8C918
     $u = "https://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe"
     $h = "92CFB3DE1721066FF5A93F14A224CC26F839969706248B8B52371A8C40A9445B"
     OptionallyDownloadAndVerify $BuildToolsInstaller $u $h
-    Write-Host -ForegroundColor Yellow "-- Please install the Build Tools --"
-    Start-Process $BuildToolsInstaller -Wait -NoNewWindow
+    Write-Host -ForegroundColor Yellow "    *** Please install Microsoft Build Tools 2015 (and wait 20 seconds) ***"
+    #Start-Process $BuildToolsInstaller -Wait -NoNewWindow   // waits forever (for the "process group"?)
+    $p = start-process -passthru $BuildToolsInstaller
+    $p.WaitForExit()
 }
 $msbuild = "C:\Program Files (x86)\MSBuild\14.0\"    # Build tools 2015
 if ($ENV:MSBUILD -ne $msbuild) {
     ## In anology to WiX, we set an environment variable, which the Msbuild installer does not set
     [Environment]::SetEnvironmentVariable("MSBUILD", "C:\Program Files (x86)\MSBuild\14.0\", "Machine")
-    Write-Host -ForegroundColor Red "-- Please open a new Shell for the MSBUILD enviornment variable --"
+#[Environment]::SetEnvironmentVariable("MyTestVariable",$null,"User")
+    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the MSBUILD enviornment variable ***"
 } else {
     Write-Host -ForegroundColor Green "MSBUILD enviornment variable found ($ENV:MSBUILD)"
 }
