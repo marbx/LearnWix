@@ -12,12 +12,16 @@ function VerifyFileContentByHashsum ($local_file, $SHA256) {
 }
 
 
-function OptionallyDownloadAndVerify ($local_file, $URL, $SHA256) {
+function VerifyOrDownload ($local_file, $URL, $SHA256) {
     if (-Not (Test-Path $local_file)) {
-        Write-Host -ForegroundColor Green "Downloading...  $URL"
-        Write-Host -ForegroundColor Green "To...           $local_file"
+        Write-Host -ForegroundColor Green "  Downloading $URL"
+        Write-Host -ForegroundColor Green "  To          $local_file"
         [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
         (New-Object System.Net.WebClient).DownloadFile($URL, $local_file)
     }
     VerifyFileContentByHashsum $local_file $SHA256
+}
+
+function UpgradecodeExists($upgradecode) {
+    Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$upgradecode
 }
