@@ -50,9 +50,9 @@ if (Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"{AA06E8
 }
 
 if ($ENV:WIX -eq "") {
-    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the Wix enviornment variable ***"
+    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the Wix environment variable ***"
 } else {
-    Write-Host -ForegroundColor Green "WiX enviornment variable found ($ENV:WIX)"
+    Write-Host -ForegroundColor Green "WiX environment variable found ($ENV:WIX)"
 }
 
 ## Build tools 2015  
@@ -76,12 +76,13 @@ if ((Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\"{8C918
 $msbuild = "C:\Program Files (x86)\MSBuild\14.0\"    # Build tools 2015
 if ($ENV:MSBUILD -ne $msbuild) {
     ## In anology to WiX, we set an environment variable, which the Msbuild installer does not set
-    [Environment]::SetEnvironmentVariable("MSBUILD", "C:\Program Files (x86)\MSBuild\14.0\", "Machine")
-#[Environment]::SetEnvironmentVariable("MyTestVariable",$null,"User")
-    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the MSBUILD enviornment variable ***"
+    [Environment]::SetEnvironmentVariable("MSBUILD", $msbuild, "Machine")
+    Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the MSBUILD environment variable ***"
 } else {
-    Write-Host -ForegroundColor Green "MSBUILD enviornment variable found ($ENV:MSBUILD)"
+    Write-Host -ForegroundColor Green "MSBUILD environment variable found ($ENV:MSBUILD)"
 }
+
+#TODO [Environment]::SetEnvironmentVariable("MSBUILD", $null, "Machine")
 
 
 
