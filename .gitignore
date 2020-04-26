@@ -1,5 +1,5 @@
-setup_env_cache/BuildTools_Full.exe
-setup_env_cache/wix311.exe
+setupInstallSoftware/BuildTools_Full.exe
+setupInstallSoftware/wix311.exe
 **/*.msi
 **/*.wixobj
 **/*.wixpdb

@@ -22,6 +22,6 @@ function VerifyOrDownload ($local_file, $URL, $SHA256) {
     VerifyFileContentByHashsum $local_file $SHA256
 }
 
-function UpgradecodeExists($upgradecode) {
+function ProductcodeExists($upgradecode) {
     Test-Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$upgradecode
 }
