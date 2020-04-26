@@ -1,3 +1,4 @@
+# Set-ExecutionPolicy RemoteSigned
 
 $wixpath = 'C:\Program Files (x86)\WiX Toolset v3.11\bin'
 $displayversion  = & ..\salt\pkg\windows\buildenv\bin\python.exe ..\salt\salt\version.py

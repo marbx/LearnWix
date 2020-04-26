@@ -1,7 +1,4 @@
-setupInstallSoftware/BuildTools_Full.exe
-setupInstallSoftware/wix311.exe
+_cache.dir/*
 **/*.msi
 **/*.wixobj
 **/*.wixpdb
-
-
