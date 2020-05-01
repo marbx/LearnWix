@@ -45,9 +45,10 @@ if (ProductcodeExists "{AA06E868-267F-47FB-86BC-D3D62305D7F4}") {
         "7CAECC9FFDCDECA09E211AA20C8DD2153DA12A1647F8B077836B858C7B4CA265"
     Write-Host -ForegroundColor Yellow "    *** Please install the Wix toolset ***"
     Start-Process $wixInstaller -Wait -NoNewWindow
+}
+if ($ENV:WIX -eq $null) {
     Write-Host -ForegroundColor Yellow "    *** Please open a new Shell for the Wix enviornment variable ***"
 }
-
 
 
 
