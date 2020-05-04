@@ -2,9 +2,7 @@
 $msbuild = "C:\Program Files (x86)\MSBuild\14.0\"    # Build tools 2015
 
 function CheckExitCode($txt) {
-    if ($LastExitCode -eq 0) {
-        Write-Host -ForegroundColor Yellow "$txt done"
-    } else {
+    if ($LastExitCode -ne 0) {
         Write-Host -ForegroundColor Red "$txt failed"
         exit(1)
     }
