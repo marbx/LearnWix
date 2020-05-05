@@ -11,15 +11,24 @@
       >
     <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
 
+    <!-- Default values of public properties -->
+    <Property Id="HELLO1"               Value="world one"/>
+    <Property Id="HELLO2"               Value="world two"/>
 
-    <InstallExecuteSequence> 
-      
+    <!--
+      Before MigrateFeatureStates:
+        action is placed before the transaction starts, coined "immediate"
+        you should not modifiy the system.
+      After InstallFiles:
+        action is placed after the transaction started, coined "deferred"
+        Deferred custom actions (DECAC) need custum action helper (CADH) to access msi properties
+        you may modifiy the system.
+      -->
+    <InstallExecuteSequence>
       <Custom Action='ReadConfig_IMCAC'            Before='MigrateFeatureStates'        >NOT Installed</Custom>
-
-      <Custom Action='WriteConfig_CADH'     
+      <Custom Action='WriteConfig_CADH'
               Before='WriteConfig_DECAC'                                                >NOT Installed</Custom>
       <Custom Action='WriteConfig_DECAC'           After='InstallFiles'                 >NOT Installed</Custom>
-
     </InstallExecuteSequence>
 
 
