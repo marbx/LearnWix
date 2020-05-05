@@ -37,5 +37,15 @@ namespace CA1 {
             return ActionResult.Success;
         }
 
+
+        [CustomAction]
+        public static ActionResult WriteConfig_DECAC(Session session) {
+            /*
+              */
+            session.Log("...Begin WriteConfig_DECAC");
+            session.Log("...End WriteConfig_DECAC");
+            return ActionResult.Success;
+        }
+
     }
 }

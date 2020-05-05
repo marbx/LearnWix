@@ -1,5 +1,6 @@
 _cache.dir/*
 **/*.dll
+**/Product.log
 **/*.pdb
 **/*.msi
 **/*.wixobj

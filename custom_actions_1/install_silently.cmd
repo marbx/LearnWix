@@ -1,1 +1,1 @@
-msiexec /i Product.msi /qb!
+msiexec /i Product.msi /qb! /log Product.log

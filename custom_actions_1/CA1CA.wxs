@@ -2,20 +2,26 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment>
 
-  <CustomAction Id="ReadConfig_IMCAC"            
-  BinaryKey='MinionConfigExt'
-  DllEntry='ReadConfig_IMCAC'            Execute='firstSequence'/>
+    <CustomAction 
+      Id="ReadConfig_IMCAC"            
+      DllEntry='ReadConfig_IMCAC'            
+      BinaryKey='CA1CA'
+      Execute='firstSequence'/>
 
-  <CustomAction 
-    Id="WriteConfig_DECAC"
-    BinaryKey='MinionConfigExt' 
-    DllEntry='WriteConfig_DECAC'
-    Execute='deferred' Return='check' Impersonate='no'/>
+    <CustomAction 
+      Id="WriteConfig_DECAC"
+      DllEntry='WriteConfig_DECAC'
+      BinaryKey='CA1CA' 
+      Execute='deferred' 
+      Return='check' 
+      Impersonate='no'/>
     
-    <CustomAction Id="WriteConfig_CADH"
+    <CustomAction 
+      Id="WriteConfig_CADH"
       Property="WriteConfig_DECAC"             
-      Value="root_dir=[INSTALLFOLDER];master=[MASTER]" />
+      Value="hello1=[HELLO1];hello2=[HELLO2]" />
   
-    <Binary Id='MinionConfigExt' SourceFile='CA1\obj\x86\Release\CA1.dll'/>
+    <Binary Id='CA1CA' SourceFile='CA1\obj\x86\Release\CA1.CA.dll'/>
+
   </Fragment>
 </Wix>
