@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+
+  <Product
+      Name='Foobar 1.0'
+      UpgradeCode='1A0A555C-0954-4A27-9067-46F3A6E0B75D'
+      Id='*'
+      Language='1033'
+      Version='1.0.0'
+      Manufacturer='Acme Ltd.'
+      >
+    <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
+
+
+    <InstallExecuteSequence> 
+      
+      <Custom Action='ReadConfig_IMCAC'            Before='MigrateFeatureStates'        >NOT Installed</Custom>
+
+      <Custom Action='WriteConfig_CADH'     
+              Before='WriteConfig_DECAC'                                                >NOT Installed</Custom>
+      <Custom Action='WriteConfig_DECAC'           After='InstallFiles'                 >NOT Installed</Custom>
+
+    </InstallExecuteSequence>
+
+
+    <MediaTemplate EmbedCab="yes" />
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+        <Directory Id='Acme' Name='Acme'>
+          <Directory Id='INSTALLDIR' Name='Foobar 1.0'>
+            <Component Id='MainExecutable'>
+              <File Id='FoobarEXE' Name='FoobarAppl10.exe' Source='FoobarAppl10.exe' KeyPath='yes'/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+    </Feature>
+  </Product>
+</Wix>
