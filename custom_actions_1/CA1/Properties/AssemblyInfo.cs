@@ -6,15 +6,15 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MinionConfigurationExtension")]
-[assembly: AssemblyDescription("Custom Actions for the Salt Minion MSI")]
-[assembly: AssemblyCompany("SaltStack, Inc")]
-[assembly: AssemblyProduct("MinionConfigurationExtension")]
-[assembly: AssemblyCopyright("Copyright © SaltStack, Inc 2014")]
+[assembly: AssemblyTitle("CA1")]
+[assembly: AssemblyDescription("CA1")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("CA1")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyDefaultWixExtension(typeof(MinionConfigurationExtension.MinionConfiguration))]
+[assembly: AssemblyDefaultWixExtension(typeof(CA1.CA1))]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ead7bf40-ca47-41e2-8187-6c346cccb46a")]
+[assembly: Guid("64a50db1-9d90-494a-ab0a-c76b3d750376")]
 
 // Version information for an assembly consists of the following four values:
 //

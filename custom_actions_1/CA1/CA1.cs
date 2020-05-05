@@ -5,8 +5,8 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace MinionConfigurationExtension {
-    public class MinionConfiguration : WixExtension {
+namespace CA1 {
+    public class CA1 : WixExtension {
 
         public static string get_property_DECAC(Session session, string key) {
             session.Log("...get_property_DECAC key {0}", key);
