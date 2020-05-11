@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix
+    xmlns="http://schemas.microsoft.com/wix/2006/wi"
+    xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product
+      Name='Foobar 1.0'
+      UpgradeCode='053437f1-994d-4758-be0e-99ccf6d89618'
+      Id='*'
+      Language='1033'
+      Version='1.0.0'
+      Manufacturer='Acme Ltd.'
+      >
+    <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+        <Directory Id='Acme' Name='Acme'>
+          <Directory Id='INSTALLFOLDER' Name='Foobar 1.0'>
+            <Component Id='MainExecutable'>
+              <File Id='FoobarEXE' Name='FoobarAppl10.exe' Source='FoobarAppl10.exe' KeyPath='yes'/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+    </Feature>
+    <Feature Id="Uninstall">
+        <ComponentRef Id="UninstallFolder" Primary="yes"/>
+    </Feature>
+  </Product>
+
+  <Fragment Id="FolderUninstall">
+    <?define RegDir="SOFTWARE\ACME\Foobar"?>
+    <?define RegValueName="InstallDir"?>
+    <Property Id="INSTALLFOLDER">
+      <RegistrySearch Root="HKLM" Key="$(var.RegDir)" Type="raw"
+                Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegValueName)" />
+    </Property>
+
+    <DirectoryRef Id='INSTALLFOLDER'>
+      <Component Id="UninstallFolder" Guid="*">
+        <!--<Condition>ASA=33</Condition>-->
+        <CreateFolder Directory="INSTALLFOLDER"/>
+        <util:RemoveFolderEx Property="INSTALLFOLDER" On="uninstall"/>
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
+        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueName)"
+                Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+</Wix>
