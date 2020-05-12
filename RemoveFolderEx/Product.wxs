@@ -26,11 +26,8 @@
     </Directory>
 
     <Feature Id='Complete' Level='1'>
-      <ComponentRef Id='MainExecutable' />
-    </Feature>
-    <Feature Id="Uninstall" Level='1'>
-        <Condition Level='1'>REMOVE_CONFIG</Condition>
-      <ComponentRef Id="UninstallFolder" Primary="yes"/>
+      <ComponentRef Id='MainExecutable'/>
+      <ComponentRef Id="UninstallFolderComponent"/>
     </Feature>
   </Product>
 
@@ -43,13 +40,20 @@
     </Property>
 
     <DirectoryRef Id='INSTALLFOLDER'>
-      <Component Id="UninstallFolder" Guid="*">
+      <Component Id="UninstallFolderComponent" Guid="30d15bbf-44e7-4d95-876d-5b64bef6ab40">
+        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueName)"
+                Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
         <CreateFolder Directory="INSTALLFOLDER"/>
         <util:RemoveFolderEx Property="INSTALLFOLDER" On="uninstall"/>
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
-        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueName)"
-                Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
       </Component>
+
+<!--
+      <Condition>REMOVE_CONFIG</Condition>
+
+
+-->
+  
     </DirectoryRef>
   </Fragment>
 
