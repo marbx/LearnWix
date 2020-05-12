@@ -12,17 +12,23 @@ CustomAction WixRemoveFoldersEx returned actual error code 1603 but will be tran
 Action ended 10:04:58: WixRemoveFoldersEx. Return value 1.
 
 
-### links
+### links regarding RemoveFolderE 
 
-#### Use component in feature, use condition in feature (Author Eli)
+#### RemoveFolderEx in component in sub-feature in feature, use condition in sub-feature (Author Eli)
 
+FAILS
 https://stackoverflow.com/questions/195919/removing-files-when-uninstalling-wix
 
 
+#### RemoveFolderEx in component  in feature, use condition in component (Author Hass)
+
 https://www.hass.de/content/wix-how-use-removefolderex-your-xml-scripts
+
+### ...
 
 https://stackoverflow.com/questions/320921/how-to-add-a-wix-custom-action-that-happens-only-on-uninstall-via-msi
 
+### links Conditions
 
 https://wafoster.wordpress.com/2013/07/03/fun-with-wix-conditional-features/
 
