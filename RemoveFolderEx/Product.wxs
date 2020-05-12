@@ -28,8 +28,9 @@
     <Feature Id='Complete' Level='1'>
       <ComponentRef Id='MainExecutable' />
     </Feature>
-    <Feature Id="Uninstall">
-        <ComponentRef Id="UninstallFolder" Primary="yes"/>
+    <Feature Id="Uninstall" Level='1'>
+        <Condition Level='1'>REMOVE_CONFIG</Condition>
+      <ComponentRef Id="UninstallFolder" Primary="yes"/>
     </Feature>
   </Product>
 
@@ -43,7 +44,6 @@
 
     <DirectoryRef Id='INSTALLFOLDER'>
       <Component Id="UninstallFolder" Guid="*">
-        <!--<Condition>ASA=33</Condition>-->
         <CreateFolder Directory="INSTALLFOLDER"/>
         <util:RemoveFolderEx Property="INSTALLFOLDER" On="uninstall"/>
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
