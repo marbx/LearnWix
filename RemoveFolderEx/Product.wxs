@@ -36,7 +36,7 @@
 
   <Fragment Id="FolderUninstall">
     <?define RegDir="SOFTWARE\ACME\Foobar"?>
-    <?define RegValueName="InstallDir"?>
+    <?define RegValueName="RememberForRemoveFolderExINSTALLFOLDER"?>
     <Property Id="INSTALLFOLDER">
       <RegistrySearch Root="HKLM" Key="$(var.RegDir)" Type="raw"
                 Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegValueName)" />
