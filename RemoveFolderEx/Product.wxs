@@ -31,17 +31,17 @@
     </Feature>
   </Product>
 
-  <Fragment Id="FolderUninstall">
+  <Fragment Id="FolderUninstallFragment">
     <?define RegDir="SOFTWARE\ACME\Foobar"?>
-    <?define RegValueName="RememberForRemoveFolderExINSTALLFOLDER"?>
+    <?define RegValueINSTALLFOLDER="RememberForRemoveFolderExINSTALLFOLDER"?>
     <Property Id="INSTALLFOLDER">
       <RegistrySearch Root="HKLM" Key="$(var.RegDir)" Type="raw"
-                Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegValueName)" />
+                Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegValueINSTALLFOLDER)" />
     </Property>
 
     <DirectoryRef Id='INSTALLFOLDER'>
       <Component Id="UninstallFolderComponent" Guid="30d15bbf-44e7-4d95-876d-5b64bef6ab40">
-        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueName)"
+        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueINSTALLFOLDER)"
                 Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
         <CreateFolder Directory="INSTALLFOLDER"/>
         <util:RemoveFolderEx Property="INSTALLFOLDER" On="uninstall"/>
