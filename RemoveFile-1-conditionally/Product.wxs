@@ -10,8 +10,6 @@
       >
     <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
     <MediaTemplate EmbedCab="yes" />
-    <!-- With SetProperty, the commandline property REMOVE_CONFIG=1 has no effect   -->
-    <!-- <SetProperty Id="REMOVE_CONFIG" Value="0" Before="CostInitialize"/> -->
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='Acme' Name='Acme'>
@@ -21,9 +19,8 @@
             </Component>
           </Directory>
           <Directory Id='CONFIGFOLDER' Name='FoobarConf'>
-            <Component Id="RmConfComponent" Transitive='yes' Guid="b0244929-7cdd-4f5d-9a49-c8672382747d">
-              <!-- The commandline property REMOVE_CONFIG=1 has no effect on RemoveFile
-              Maybe because msi schedules properties after Remove Files?
+            <Component Id="RmConfComponent" Transitive='yes' Guid="2f8c1338-e705-4765-9557-91aa6197c6d7">
+              <!-- 
               Transitive='yes'  added because of
               https://stackoverflow.com/questions/16037821/why-are-properties-ignored-on-uninstallation-if-they-have-not-been-set-on-insta
               -->
@@ -40,5 +37,28 @@
       <ComponentRef Id='MainExecutable'/>
       <ComponentRef Id='RmConfComponent'/>
     </Feature>
+    <CustomActionRef Id='SaveCmdLineValue' />
   </Product>
+
+<!-- Command line property scheduler  http://robmensching.com/blog/posts/2010/5/2/the-wix-toolsets-remember-property-pattern/  -->
+  <Fragment>
+    <CustomAction Id='SaveCmdLineValue' Property='CMDLINE_REMEMBERME'
+                  Value='[REMOVE_CONFIG]' Execute='firstSequence' />
+    <CustomAction Id='SetFromCmdLineValue' Property='REMOVE_CONFIG'
+                  Value='[CMDLINE_REMEMBERME]' Execute='firstSequence' />
+
+    <InstallUISequence>
+      <Custom Action='SaveCmdLineValue' Before='AppSearch' />
+      <Custom Action='SetFromCmdLineValue' After='AppSearch'>
+        CMDLINE_REMEMBERME
+      </Custom>
+    </InstallUISequence>
+    <InstallExecuteSequence>
+      <Custom Action='SaveCmdLineValue' Before='AppSearch' />
+      <Custom Action='SetFromCmdLineValue' After='AppSearch'>
+        CMDLINE_REMEMBERME
+      </Custom>
+    </InstallExecuteSequence>
+  </Fragment>
+
 </Wix>
