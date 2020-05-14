@@ -139,3 +139,25 @@ onfig with the WixUtilExtension ServiceConfig element. [C:\git\salt-windows-msi\
     0 Error(s)
 
 Time Elapsed 00:03:01.04
+
+
+####################### LIGHT
+
+-out C:\git\salt-windows-msi\wix.d\MinionMSI\bin\Release\Salt-Minion-v3000.1-1864-g45aaf1f10b-Py3-AMD64.msi 
+-pdbout C:\git\salt-windows-msi\wix.d\MinionMSI\bin\Release\Salt-Minion-Setup.wixpdb 
+-cultures:null 
+-ext "C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixUtilExtension.dll" 
+-ext "C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixUIExtension.dll" 
+-ext "C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixNetFxExtension.dll" 
+-sice:ICE03 
+-contentsfile obj\Release\MinionMSI.wixproj.BindContentsFileListnull.txt 
+-outputsfile obj\Release\MinionMSI.wixproj.BindOutputsFileListnull.txt 
+-builtoutputsfile obj\Release\MinionMSI.wixproj.BindBuiltOutputsFileListnull.txt 
+-wixprojectfile C:\git\salt-windows-msi\wix.d\MinionMSI\MinionMSI.wixproj 
+-nologo obj\Release\service.wixobj 
+obj\Release\servicePython.wixobj 
+obj\Release\ProductUIsettings.wixobj 
+obj\Release\MinionConfigurationExtensionCA.wixobj 
+obj\Release\Product.wixobj 
+obj\Release\ProductUI.wixobj 
+obj\Release\dist-amd64.wixobj
