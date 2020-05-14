@@ -1,10 +1,12 @@
+# RemoveFolderEx, no condition
+
 ### enjoy uninstall log with REMOVE_CONFIG
 
 Action start 10:29:38: WixRemoveFoldersEx.
 WixRemoveFoldersEx:  Recursing path: C:\Program Files (x86)\Acme\Foobar 1.0\ for row: wrfC080834F25891F84E6EEDCAECFC86E7A.
 Action ended 10:29:38: WixRemoveFoldersEx. Return value 1.
 
-### ignore ugly install log and uninstall log without REMOVE_CONFIG
+### ignore ugly install log and uninstall log
 
 Action start 10:04:58: WixRemoveFoldersEx.
 WixRemoveFoldersEx:  Error 0x80070057: Missing folder property: INSTALLFOLDER for row: wrfC080834F25891F84E6EEDCAECFC86E7A
@@ -12,15 +14,14 @@ CustomAction WixRemoveFoldersEx returned actual error code 1603 but will be tran
 Action ended 10:04:58: WixRemoveFoldersEx. Return value 1.
 
 
-### links regarding RemoveFolderE 
+### links regarding RemoveFolderEx
 
-#### RemoveFolderEx in component in sub-feature in feature, use condition in sub-feature (Author Eli)
+#### FAIL RemoveFolderEx in component in sub-feature in feature, use condition in sub-feature (Author Eli)
 
-FAILS
 https://stackoverflow.com/questions/195919/removing-files-when-uninstalling-wix
 
 
-#### RemoveFolderEx in component  in feature, use condition in component (Author Hass)
+#### FAIL RemoveFolderEx in component  in feature, use condition in component (Author Hass)
 
 https://www.hass.de/content/wix-how-use-removefolderex-your-xml-scripts
 

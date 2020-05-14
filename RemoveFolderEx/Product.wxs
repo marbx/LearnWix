@@ -27,33 +27,27 @@
 
     <Feature Id='Complete' Level='1'>
       <ComponentRef Id='MainExecutable'/>
-      <ComponentRef Id="UninstallFolderComponent"/>
+      <ComponentRef Id="RemoveFolderEx_INSTALLFOLDER_Component"/>
     </Feature>
   </Product>
 
-  <Fragment Id="FolderUninstallFragment">
+  <Fragment Id="RemoveFolderEx_Fragment">
     <?define RegDir="SOFTWARE\ACME\Foobar"?>
-    <?define RegValueINSTALLFOLDER="RememberForRemoveFolderExINSTALLFOLDER"?>
+    <?define RegVal_INSTALLFOLDER="RememberForRemoveFolderExINSTALLFOLDER"?>
     <Property Id="INSTALLFOLDER">
       <RegistrySearch Root="HKLM" Key="$(var.RegDir)" Type="raw"
-                Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegValueINSTALLFOLDER)" />
+                Id="APPLICATIONFOLDER_REGSEARCH" Name="$(var.RegVal_INSTALLFOLDER)" />
     </Property>
 
     <DirectoryRef Id='INSTALLFOLDER'>
-      <Component Id="UninstallFolderComponent" Guid="30d15bbf-44e7-4d95-876d-5b64bef6ab40">
-        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegValueINSTALLFOLDER)"
+      <Component Id="RemoveFolderEx_INSTALLFOLDER_Component" Guid="30d15bbf-44e7-4d95-876d-5b64bef6ab40">
+        <RegistryValue Root="HKLM" Key="$(var.RegDir)" Name="$(var.RegVal_INSTALLFOLDER)"
                 Type="string" Value="[INSTALLFOLDER]" KeyPath="yes"/>
         <CreateFolder Directory="INSTALLFOLDER"/>
         <util:RemoveFolderEx Property="INSTALLFOLDER" On="uninstall"/>
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall"/>
       </Component>
 
-<!--
-      <Condition>REMOVE_CONFIG</Condition>
-
-
--->
-  
     </DirectoryRef>
   </Fragment>
 
