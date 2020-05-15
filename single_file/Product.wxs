@@ -2,11 +2,11 @@
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
   <Product
       Name='Foobar 1.0'
-      UpgradeCode='1A0A555C-0954-4A27-9067-46F3A6E0B75D'
-      Id='*'
-      Language='1033'
       Version='1.0.0'
       Manufacturer='Acme Ltd.'
+      Language='1033'
+      UpgradeCode='206d7a96-20bb-48cd-851e-77412dbdfe03'
+      Id='*'
       >
     <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
     <MediaTemplate EmbedCab="yes" />

@@ -4,11 +4,11 @@
     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Product
       Name='Foobar 1.0'
-      UpgradeCode='053437f1-994d-4758-be0e-99ccf6d89618'
-      Id='*'
-      Language='1033'
       Version='1.0.0'
       Manufacturer='Acme Ltd.'
+      Language='1033'
+      UpgradeCode='c309905c-d7ed-4d3d-9004-4140469690df'
+      Id='*'
       >
     <Package InstallerVersion='450' Compressed='yes' InstallScope="perMachine" />
     <MediaTemplate EmbedCab="yes" />
