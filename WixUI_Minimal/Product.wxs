@@ -15,8 +15,8 @@
 
     <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
 
-    <WixVariable Id="WixUIBannerBmp" Value="imgTop.bmp" />
-    <WixVariable Id="WixUIDialogBmp" Value="imgLeft.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="imgTop.png" />
+    <WixVariable Id="WixUIDialogBmp" Value="imgLeft.png" />
 
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
