@@ -29,11 +29,14 @@
     <Feature Id='Complete'>
       <ComponentRef Id='ReadMe.component'/>
     </Feature>
+
     <UI>
       <UIRef Id="WixUI_Mondo" />
       <DialogRef Id="HelloworldDlg" />
+
       <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="HelloworldDlg" Order="3">LicenseAccepted = "1"</Publish>
       <Publish Dialog="SetupTypeDlg" Control="Back" Event="NewDialog" Value="HelloworldDlg">1</Publish>
+
       <Dialog Id="HelloworldDlg" Width="370" Height="270" Title="Hello World Dialog" NoMinimize="yes">
         <Control Id="NameLabel" Type="Text" X="45" Y="73" Width="100" Height="15" TabSkip="no" Text="&amp;Name of world:" />
         <Control Id="NameEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="NAME_OF_WORLD" Text="{110}" />
@@ -47,6 +50,8 @@
           <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
         </Control>
       </Dialog>
+
     </UI>
+
   </Product>
 </Wix>
