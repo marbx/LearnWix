@@ -44,7 +44,6 @@
       <Publish Dialog="HelloworldDlg"         Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
       <Publish Dialog="VerifyReadyDlg"        Control="Back"   Event="NewDialog"   Value="HelloworldDlg">1</Publish>
 
-      <DialogRef Id="HelloworldDlg" />
       <Dialog    Id="HelloworldDlg" Title="Hello World Dialog"    Width="370" Height="270" NoMinimize="yes">
         <Control Type="Text"       Id="NameLabel" X="45"  Y="73"  Width="100" Height="15"  TabSkip="no" Text="&amp;Name of world:" />
         <Control Type="Edit"       Id="NameEdit"  X="45"  Y="85"  Width="220" Height="18"  Property="NAME_OF_WORLD" Text="{110}" />
