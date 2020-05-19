@@ -31,29 +31,26 @@
     </Feature>
 
     <UI>
-      <UIRef Id="WixUI_Mondo" />
-      <DialogRef Id="HelloworldDlg" />
+      <UIRef     Id="WixUI_Mondo" />    <!-- The template-->
 
       <!-- Dialogs are like doubly linked list.
            To chain two dialogs, you must set A.next to B, and B.back to A
-           To set X.next to Y you must use the Publish element.
-           Within your custom dialog, the Publish element must be in a Control element.
+           To set X.next to Y you must use the Publish element
+           The Publish element could be in a Control element of your custom dialog
              -->
-      <Publish Dialog="LicenseAgreementDlg"   Control="Next" Event="NewDialog" Value="HelloworldDlg" Order="3">LicenseAccepted = "1"</Publish>
-      <Publish Dialog="LicenseAgreementDlg"   Control="Back" Event="NewDialog" Value="HelloworldDlg">1</Publish>
+      <Publish Dialog="LicenseAgreementDlg"   Control="Next"   Event="NewDialog"   Value="HelloworldDlg" Order="3">LicenseAccepted = "1"</Publish>
+      <Publish Dialog="HelloworldDlg"         Control="Next"   Event="NewDialog"   Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="HelloworldDlg"         Control="Back"   Event="NewDialog"   Value="LicenseAgreementDlg">1</Publish>
+      <Publish Dialog="HelloworldDlg"         Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="VerifyReadyDlg"        Control="Back"   Event="NewDialog"   Value="HelloworldDlg">1</Publish>
 
-      <Dialog Id="HelloworldDlg" Width="370" Height="270" Title="Hello World Dialog" NoMinimize="yes">
-        <Control Id="NameLabel" Type="Text" X="45" Y="73" Width="100" Height="15" TabSkip="no" Text="&amp;Name of world:" />
-        <Control Id="NameEdit" Type="Edit" X="45" Y="85" Width="220" Height="18" Property="NAME_OF_WORLD" Text="{110}" />
-        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
-          <Publish Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
-        </Control>
-        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
-          <Publish Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
-        </Control>
-        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
-          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
-        </Control>
+      <DialogRef Id="HelloworldDlg" />
+      <Dialog    Id="HelloworldDlg" Title="Hello World Dialog"    Width="370" Height="270" NoMinimize="yes">
+        <Control Type="Text"       Id="NameLabel" X="45"  Y="73"  Width="100" Height="15"  TabSkip="no" Text="&amp;Name of world:" />
+        <Control Type="Edit"       Id="NameEdit"  X="45"  Y="85"  Width="220" Height="18"  Property="NAME_OF_WORLD" Text="{110}" />
+        <Control Type="PushButton" Id="Back"      X="180" Y="243" Width="56"  Height="17"  Text="&amp;Back"/>
+        <Control Type="PushButton" Id="Next"      X="236" Y="243" Width="56"  Height="17"  Default="yes" Text="&amp;Next"/>
+        <Control Type="PushButton" Id="Cancel"    X="304" Y="243" Width="56"  Height="17"  Cancel="yes" Text="&amp;Cancel"/>
       </Dialog>
 
     </UI>
