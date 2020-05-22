@@ -38,7 +38,7 @@ if (ProductcodeExists "{03368010-193D-4AE2-B275-DD2EB32CD427}") {
         Start-Process optionalfeatures -Wait -NoNewWindow
     }
 
-    $wixInstaller = "$CACHEDIR/wix311.exe"
+    $wixInstaller = "$CACHEDIR/wix3-11-2-Setup.exe"
     VerifyOrDownload $wixInstaller `
         "https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe" `
         "32BB76C478FCB356671D4AAF006AD81CA93EEA32C22A9401B168FC7471FECCD2"
